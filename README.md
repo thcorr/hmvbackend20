@@ -6,7 +6,6 @@ ___
 
 ### GET (/) - Retorna todas as drogas
 #### Sucesso - exemplo body: 
-
 ```javascript
 {
   "content": [
@@ -93,7 +92,12 @@ BAD_REQUEST - 400
 
 ### PUT (/{id} - Atualiza uma droga
 #### Sucesso - exemplo body:
-
+```javascript
+{
+  "drugId": 6,
+  "drugName": "Neosaldina"
+}
+```
 #### Sucesso - HTTP Status Code: 
 OK - 200
 
@@ -105,7 +109,7 @@ NOT FOUND - 404 ou BAD_REQUEST
 
 ### DELETE /{id} - Deleta uma droga
 #### Sucesso - exemplo body: 
-String - "Deleted successfully: " + drug name
+String - "Deleted successfully: " + nome droga
 
 #### Sucesso - HTTP Status Code: 
 OK - 200
@@ -120,58 +124,359 @@ ___
 ## Exam-Entry Controller /api/v1/examentry
 ###Descricao: Endpoint para incluir, alterar, excluir, e consultar entradas (registros) de exames feitos pelos pacientes.
 
-### GET
+### GET (/) - Retorna todos os tipos de exame
+#### Sucesso - exemplo body: 
+
+```javascript
+
+```
+#### Sucesso - HTTP Status Code: 
+FOUND - 302
+
+#### Falha - exemplo body: 
+String - "No exam types found"
+
+#### Falha - HTTP Status Code:
+NOT_FOUND - 404
+
+### GET by id (/id/{id}) - Retorna tipo de exame por ID
 #### Sucesso - exemplo body:
+```javascript
+ 
+```
 
-#### Sucesso - HTTP Status Code:
+#### Sucesso - HTTP Status Code: 
+FOUND - 302
 
-#### Falha - exemplo body:
+#### Falha - exemplo body: 
+String - "Exam type not found"
 
 #### Falha - HTTP Status Code: 
+NOT_FOUND - 404
 
-### GET by id
+### POST (/) - Cria tipo de exame
+#### Sucesso - exemplo body:
+```javascript
+{
 
-### POST
+}
+```
 
-### PUT
+#### Sucesso - HTTP Status Code: 
+CREATED - 201
 
-### DELETE
+#### Falha - exemplo body: 
+String - "Error " + exception message
+
+#### Falha - HTTP Status Code:  
+BAD_REQUEST - 400
+
+### PUT (/{id} - Atualiza uma droga
+#### Sucesso - exemplo body:
+```javascript
+{
+
+}
+```
+#### Sucesso - HTTP Status Code: 
+OK - 200
+
+#### Falha - exemplo body: 
+String - "No exam types found" ou "Error " + exception message
+
+#### Falha - HTTP Status Code: 
+NOT FOUND - 404 ou BAD_REQUEST 
+
+### DELETE /{id} - Deleta um tipo de exame
+#### Sucesso - exemplo body: 
+String - "Deleted successfully: " + drug name
+
+#### Sucesso - HTTP Status Code: 
+OK - 200
+
+#### Falha - exemplo body: 
+String - "Drug not found" ou "Error " + exception message 
+
+#### Falha - HTTP Status Code: 
+NOT_FOUND - 404 - NOT_FOUND
+
 
 ___
 ## Exam-Type Controller /api/v1/examtype
 ###Descricao: Endpoint para incluir, alterar, excluir, e consultar tipos de exames. Dado utilizado no endpoint de examentry.
-### GET
+### GET (/) - Retorna todos os tipos de exame
+#### Sucesso - exemplo body: 
 
-### GET by id
+```javascript
+{
+  "content": [
+    {
+      "examTypeId": 8,
+      "examName": "Oximetria"
+    },
+    {
+      "examTypeId": 9,
+      "examName": "Pressao Arterial"
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "sorted": true,
+      "unsorted": false,
+      "empty": false
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 10,
+    "paged": true,
+    "unpaged": false
+  },
+  "totalPages": 1,
+  "totalElements": 3,
+  "last": true,
+  "size": 10,
+  "number": 0,
+  "sort": {
+    "sorted": true,
+    "unsorted": false,
+    "empty": false
+  },
+  "numberOfElements": 3,
+  "first": true,
+  "empty": false
+}
+```
+#### Sucesso - HTTP Status Code: 
+FOUND - 302
 
-### POST
+#### Falha - exemplo body: 
+String - "No exam types found"
 
-### PUT
+#### Falha - HTTP Status Code:
+NOT_FOUND - 404
 
-### DELETE
+### GET by id (/id/{id}) - Retorna tipo de exame por ID
+#### Sucesso - exemplo body:
+```javascript
+ {
+  "examTypeId": 8,
+  "examName": "Oximetria"
+}
+```
+
+#### Sucesso - HTTP Status Code: 
+FOUND - 302
+
+#### Falha - exemplo body: 
+String - Exam type not found"
+
+#### Falha - HTTP Status Code: 
+NOT_FOUND - 404
+
+### POST (/) - Cria tipo de exame
+#### Sucesso - exemplo body:
+```javascript
+{
+  "examTypeId": 8,
+  "examName": "Oximetria"
+}
+```
+
+#### Sucesso - HTTP Status Code: 
+CREATED - 201
+
+#### Falha - exemplo body: 
+String - "Error " + exception message
+
+#### Falha - HTTP Status Code:  
+BAD_REQUEST - 400
+
+### PUT (/{id} - Atualiza um tipo de exame
+#### Sucesso - exemplo body:
+```javascript
+{
+  "examTypeId": 8,
+  "examName": "Insulina"
+}
+```
+#### Sucesso - HTTP Status Code: 
+OK - 200
+
+#### Falha - exemplo body: 
+String - "No exam types found" ou "Error " + exception message
+
+#### Falha - HTTP Status Code: 
+NOT FOUND - 404 ou BAD_REQUEST 
+
+### DELETE /{id} - Deleta um tipo de exame
+#### Sucesso - exemplo body: 
+String - "Deleted successfully: " + nome exame
+
+#### Sucesso - HTTP Status Code: 
+OK - 200
+
+#### Falha - exemplo body: 
+String - "Exam type not found" ou "Error " + exception message 
+
+#### Falha - HTTP Status Code: 
+NOT_FOUND - 404 - NOT_FOUND
 
 ___
 ## Prescription Controller /api/v1/prescription
 ###Descricao: Endpoint para incluir, alterar, excluir, e consultar receitas medicas para pacientes. 
-### GET
+### GET (/) - Retorna todos os tipos de exame
+#### Sucesso - exemplo body: 
 
-### GET by id
+```javascript
 
-### POST
+```
+#### Sucesso - HTTP Status Code: 
+FOUND - 302
 
-### PUT
+#### Falha - exemplo body: 
+String - "No exam types found"
 
-### DELETE
+#### Falha - HTTP Status Code:
+NOT_FOUND - 404
+
+### GET by id (/id/{id}) - Retorna tipo de exame por ID
+#### Sucesso - exemplo body:
+```javascript
+ 
+```
+
+#### Sucesso - HTTP Status Code: 
+FOUND - 302
+
+#### Falha - exemplo body: 
+String - Exam type not found"
+
+#### Falha - HTTP Status Code: 
+NOT_FOUND - 404
+
+### POST (/) - Cria tipo de exame
+#### Sucesso - exemplo body:
+```javascript
+{
+
+}
+```
+
+#### Sucesso - HTTP Status Code: 
+CREATED - 201
+
+#### Falha - exemplo body: 
+String - "Error " + exception message
+
+#### Falha - HTTP Status Code:  
+BAD_REQUEST - 400
+
+### PUT (/{id} - Atualiza uma droga
+#### Sucesso - exemplo body:
+```javascript
+{
+
+}
+```
+#### Sucesso - HTTP Status Code: 
+OK - 200
+
+#### Falha - exemplo body: 
+String - "No exam types found" ou "Error " + exception message
+
+#### Falha - HTTP Status Code: 
+NOT FOUND - 404 ou BAD_REQUEST 
+
+### DELETE /{id} - Deleta um tipo de exame
+#### Sucesso - exemplo body: 
+String - "Deleted successfully: " + drug name
+
+#### Sucesso - HTTP Status Code: 
+OK - 200
+
+#### Falha - exemplo body: 
+String - "Drug not found" ou "Error " + exception message 
+
+#### Falha - HTTP Status Code: 
+NOT_FOUND - 404 - NOT_FOUND
+
 
 ___
 ## User-Details Controller /api/v1/userdetails
 ###Descricao: Endpoint para incluir, alterar, excluir, e consultar dados de pacientes.
-### GET
+### GET (/) - Retorna todos os tipos de exame
+#### Sucesso - exemplo body: 
 
-### GET by id
+```javascript
 
-### POST
+```
+#### Sucesso - HTTP Status Code: 
+FOUND - 302
 
-### PUT
+#### Falha - exemplo body: 
+String - "No exam types found"
 
-### DELETE
+#### Falha - HTTP Status Code:
+NOT_FOUND - 404
+
+### GET by id (/id/{id}) - Retorna tipo de exame por ID
+#### Sucesso - exemplo body:
+```javascript
+ 
+```
+
+#### Sucesso - HTTP Status Code: 
+FOUND - 302
+
+#### Falha - exemplo body: 
+String - Exam type not found"
+
+#### Falha - HTTP Status Code: 
+NOT_FOUND - 404
+
+### POST (/) - Cria tipo de exame
+#### Sucesso - exemplo body:
+```javascript
+{
+
+}
+```
+
+#### Sucesso - HTTP Status Code: 
+CREATED - 201
+
+#### Falha - exemplo body: 
+String - "Error " + exception message
+
+#### Falha - HTTP Status Code:  
+BAD_REQUEST - 400
+
+### PUT (/{id} - Atualiza uma droga
+#### Sucesso - exemplo body:
+```javascript
+{
+
+}
+```
+#### Sucesso - HTTP Status Code: 
+OK - 200
+
+#### Falha - exemplo body: 
+String - "No exam types found" ou "Error " + exception message
+
+#### Falha - HTTP Status Code: 
+NOT FOUND - 404 ou BAD_REQUEST 
+
+### DELETE /{id} - Deleta um tipo de exame
+#### Sucesso - exemplo body: 
+String - "Deleted successfully: " + drug name
+
+#### Sucesso - HTTP Status Code: 
+OK - 200
+
+#### Falha - exemplo body: 
+String - "Drug not found" ou "Error " + exception message 
+
+#### Falha - HTTP Status Code: 
+NOT_FOUND - 404 - NOT_FOUND
+
