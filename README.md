@@ -124,32 +124,107 @@ ___
 ## Exam-Entry Controller /api/v1/examentry
 ###Descricao: Endpoint para incluir, alterar, excluir, e consultar entradas (registros) de exames feitos pelos pacientes.
 
-### GET (/) - Retorna todos os tipos de exame
+### GET (/) - Retorna todos os registros de exame cadastrados
 #### Sucesso - exemplo body: 
 
 ```javascript
-
+{
+  "content": [
+    {
+      "examEntryId": 12,
+      "examResult": "12-8",
+      "examDateTime": "2022-02-22T10:47:53.17",
+      "patient": {
+        "userId": 2,
+        "name": "thomasATUALIZADO",
+        "email": "teste@gmail.com",
+        "cpf": "388123",
+        "password": "123"
+      },
+      "examType": {
+        "examTypeId": 9,
+        "examName": "Pressao Arterial"
+      }
+    },
+    {
+      "examEntryId": 13,
+      "examResult": "85%",
+      "examDateTime": "2022-02-22T10:47:53.17",
+      "patient": {
+        "userId": 10,
+        "name": "Fulano",
+        "email": "teste@gmail.com",
+        "cpf": "123456789",
+        "password": "corinthians123"
+      },
+      "examType": {
+        "examTypeId": 8,
+        "examName": "Insulina"
+      }
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "sorted": true,
+      "unsorted": false,
+      "empty": false
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 10,
+    "paged": true,
+    "unpaged": false
+  },
+  "totalPages": 1,
+  "totalElements": 2,
+  "last": true,
+  "size": 10,
+  "number": 0,
+  "sort": {
+    "sorted": true,
+    "unsorted": false,
+    "empty": false
+  },
+  "numberOfElements": 2,
+  "first": true,
+  "empty": false
+}
 ```
 #### Sucesso - HTTP Status Code: 
 FOUND - 302
 
 #### Falha - exemplo body: 
-String - "No exam types found"
+String - "No exam entries found"
 
 #### Falha - HTTP Status Code:
 NOT_FOUND - 404
 
-### GET by id (/id/{id}) - Retorna tipo de exame por ID
+### GET by id (/id/{id}) - Retorna registro de exame por ID
 #### Sucesso - exemplo body:
 ```javascript
- 
+ {
+  "examEntryId": 12,
+  "examResult": "12-8",
+  "examDateTime": "2022-02-22T10:47:53.17",
+  "patient": {
+    "userId": 2,
+    "name": "thomasATUALIZADO",
+    "email": "teste@gmail.com",
+    "cpf": "388123",
+    "password": "123"
+  },
+  "examType": {
+    "examTypeId": 9,
+    "examName": "Pressao Arterial"
+  }
+}
 ```
 
 #### Sucesso - HTTP Status Code: 
 FOUND - 302
 
 #### Falha - exemplo body: 
-String - "Exam type not found"
+String - "No exam entry found." 
 
 #### Falha - HTTP Status Code: 
 NOT_FOUND - 404
@@ -158,7 +233,20 @@ NOT_FOUND - 404
 #### Sucesso - exemplo body:
 ```javascript
 {
-
+  "examEntryId": 12,
+  "examResult": "12-8",
+  "examDateTime": "2022-02-22T10:47:53.17",
+  "patient": {
+    "userId": 2,
+    "name": "thomasATUALIZADO",
+    "email": "teste@gmail.com",
+    "cpf": "388123",
+    "password": "123"
+  },
+  "examType": {
+    "examTypeId": 9,
+    "examName": "Pressao Arterial"
+  }
 }
 ```
 
@@ -166,36 +254,49 @@ NOT_FOUND - 404
 CREATED - 201
 
 #### Falha - exemplo body: 
-String - "Error " + exception message
+String - "Error " + exception message OU "User not found" (precisa estar associado a um usuario existente) OU "Exam type not found" (Precisa estar associado a um tipo de exame)
 
 #### Falha - HTTP Status Code:  
-BAD_REQUEST - 400
+BAD_REQUEST - 400 OU NOT_FOUND - 404
 
 ### PUT (/{id} - Atualiza uma droga
 #### Sucesso - exemplo body:
 ```javascript
 {
-
+  "examEntryId": 12,
+  "examResult": "string",
+  "examDateTime": "2022-02-22T10:47:53.178",
+  "patient": {
+    "userId": 2,
+    "name": "thomasATUALIZADO",
+    "email": "teste@gmail.com",
+    "cpf": "388123",
+    "password": "123"
+  },
+  "examType": {
+    "examTypeId": 8,
+    "examName": "Insulina"
+  }
 }
 ```
 #### Sucesso - HTTP Status Code: 
 OK - 200
 
 #### Falha - exemplo body: 
-String - "No exam types found" ou "Error " + exception message
+String - "Error " + exception message OU "User not found" (precisa estar associado a um usuario existente) OU "Exam type not found" (Precisa estar associado a um tipo de exame)
 
-#### Falha - HTTP Status Code: 
-NOT FOUND - 404 ou BAD_REQUEST 
+#### Falha - HTTP Status Code:  
+BAD_REQUEST - 400 OU NOT_FOUND - 404
 
 ### DELETE /{id} - Deleta um tipo de exame
 #### Sucesso - exemplo body: 
-String - "Deleted successfully: " + drug name
+String - "Deleted successfully: " + ID exam entry
 
 #### Sucesso - HTTP Status Code: 
 OK - 200
 
 #### Falha - exemplo body: 
-String - "Drug not found" ou "Error " + exception message 
+String - "Exam entry not found" ou "Error " + exception message 
 
 #### Falha - HTTP Status Code: 
 NOT_FOUND - 404 - NOT_FOUND
