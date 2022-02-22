@@ -259,7 +259,7 @@ String - "Error " + exception message OU "User not found" (precisa estar associa
 #### Falha - HTTP Status Code:  
 BAD_REQUEST - 400 OU NOT_FOUND - 404
 
-### PUT (/{id} - Atualiza uma droga
+### PUT (/{id} - Atualiza um registro de exame
 #### Sucesso - exemplo body:
 ```javascript
 {
