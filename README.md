@@ -288,7 +288,7 @@ String - "Error " + exception message OU "User not found" (precisa estar associa
 #### Falha - HTTP Status Code:  
 BAD_REQUEST - 400 OU NOT_FOUND - 404
 
-### DELETE /{id} - Deleta um tipo de exame
+### DELETE /{id} - Deleta um registro de exame
 #### Sucesso - exemplo body: 
 String - "Deleted successfully: " + ID exam entry
 
@@ -530,7 +530,7 @@ String - "Prescription not found" (Esta retornando isso se a receita nao existe 
 #### Falha - HTTP Status Code: 
 NOT FOUND - 404 ou BAD_REQUEST 400
 
-### DELETE /{id} - Deleta um tipo de exame
+### DELETE /{id} - Deleta uma receita
 #### Sucesso - exemplo body: 
 String - "Deleted successfully: " + id receita
 
@@ -632,7 +632,7 @@ String - "No user details found"
 #### Falha - HTTP Status Code: 
 NOT_FOUND - 404
 
-### POST (/) - Cria tipo paciente
+### POST (/) - Cria paciente
 #### Sucesso - exemplo body:
 ```javascript
 {
