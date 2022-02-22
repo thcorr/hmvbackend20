@@ -229,7 +229,7 @@ String - "No exam entry found."
 #### Falha - HTTP Status Code: 
 NOT_FOUND - 404
 
-### POST (/) - Cria tipo de exame
+### POST (/) - Cria registro de exame
 #### Sucesso - exemplo body:
 ```javascript
 {
