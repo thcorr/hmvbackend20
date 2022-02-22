@@ -425,41 +425,69 @@ NOT_FOUND - 404 - NOT_FOUND
 ___
 ## Prescription Controller /api/v1/prescription
 ###Descricao: Endpoint para incluir, alterar, excluir, e consultar receitas medicas para pacientes. 
-### GET (/) - Retorna todos os tipos de exame
+### GET (/) - Retorna todos as receitas
 #### Sucesso - exemplo body: 
 
 ```javascript
-
+Com erro - verificando
 ```
 #### Sucesso - HTTP Status Code: 
 FOUND - 302
 
 #### Falha - exemplo body: 
-String - "No exam types found"
+String - "No prescriptions found"
 
 #### Falha - HTTP Status Code:
 NOT_FOUND - 404
 
-### GET by id (/id/{id}) - Retorna tipo de exame por ID
+### GET by id (/id/{id}) - Retorna receita por ID
 #### Sucesso - exemplo body:
 ```javascript
- 
+ {
+  "prescriptionId": 14,
+  "prescription": "doseX",
+  "prescriptionDate": "2022-02-22",
+  "patient": {
+    "userId": 2,
+    "name": "thomasATUALIZADO",
+    "email": "teste@gmail.com",
+    "cpf": "388123",
+    "password": "123"
+  },
+  "drug": {
+    "drugId": 1,
+    "drugName": "Novalgina"
+  }
+}
 ```
 
 #### Sucesso - HTTP Status Code: 
 FOUND - 302
 
 #### Falha - exemplo body: 
-String - Exam type not found"
+String - "No prescriptions found"
 
 #### Falha - HTTP Status Code: 
 NOT_FOUND - 404
 
-### POST (/) - Cria tipo de exame
+### POST (/) - Cria receita
 #### Sucesso - exemplo body:
 ```javascript
 {
-
+  "prescriptionId": 14,
+  "prescription": "doseX",
+  "prescriptionDate": "2022-02-22",
+  "patient": {
+    "userId": 2,
+    "name": "thomasATUALIZADO",
+    "email": "teste@gmail.com",
+    "cpf": "388123",
+    "password": "123"
+  },
+  "drug": {
+    "drugId": 1,
+    "drugName": "Novalgina"
+  }
 }
 ```
 
@@ -467,36 +495,50 @@ NOT_FOUND - 404
 CREATED - 201
 
 #### Falha - exemplo body: 
-String - "Error " + exception message
+String - "Error " + exception message OU "User not found" (Precisa estar associado a um usuario) OU "Drug not found" (Precisa estar associada a uma medicacao)
 
 #### Falha - HTTP Status Code:  
-BAD_REQUEST - 400
+BAD_REQUEST - 400 OU NOT_FOUND - 404
 
-### PUT (/{id} - Atualiza uma droga
+### PUT (/{id} - Atualiza uma receita
 #### Sucesso - exemplo body:
 ```javascript
 {
-
+  "prescriptionId": 14,
+  "prescription": "Dose ALTERADA",
+  "prescriptionDate": "2022-02-22",
+  "patient": {
+    "userId": 2,
+    "name": "thomasATUALIZADO",
+    "email": "teste@gmail.com",
+    "cpf": "388123",
+    "password": "123"
+  },
+  "drug": {
+    "drugId": 1,
+    "drugName": "Novalgina"
+  }
 }
+
 ```
 #### Sucesso - HTTP Status Code: 
 OK - 200
 
 #### Falha - exemplo body: 
-String - "No exam types found" ou "Error " + exception message
+String - "Prescription not found" (Esta retornando isso se a receita nao existe bem como se o usuario nao existe - preciso corrigir) ou "Drug not found" OU "Error " + exception message
 
 #### Falha - HTTP Status Code: 
-NOT FOUND - 404 ou BAD_REQUEST 
+NOT FOUND - 404 ou BAD_REQUEST 400
 
 ### DELETE /{id} - Deleta um tipo de exame
 #### Sucesso - exemplo body: 
-String - "Deleted successfully: " + drug name
+String - "Deleted successfully: " + id receita
 
 #### Sucesso - HTTP Status Code: 
 OK - 200
 
 #### Falha - exemplo body: 
-String - "Drug not found" ou "Error " + exception message 
+String - "Prescription not found" ou "Error " + exception message 
 
 #### Falha - HTTP Status Code: 
 NOT_FOUND - 404 - NOT_FOUND
