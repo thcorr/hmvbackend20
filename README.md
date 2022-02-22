@@ -404,41 +404,100 @@ NOT_FOUND - 404 - NOT_FOUND
 ___
 ## User-Details Controller /api/v1/userdetails
 ###Descricao: Endpoint para incluir, alterar, excluir, e consultar dados de pacientes.
-### GET (/) - Retorna todos os tipos de exame
+### GET (/) - Retorna todos os pacientes cadastrados
 #### Sucesso - exemplo body: 
 
 ```javascript
-
+{
+  "content": [
+    {
+      "userId": 2,
+      "name": "thomas",
+      "email": "teste@gmail.com",
+      "cpf": "388123",
+      "password": "123"
+    },
+    {
+      "userId": 10,
+      "name": "Fulano",
+      "email": "teste@gmail.com",
+      "cpf": "123456789",
+      "password": "corinthians123"
+    },
+    {
+      "userId": 11,
+      "name": "Ciclano",
+      "email": "opa@gmail.com",
+      "cpf": "987654321",
+      "password": "senhasuperforte"
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "sorted": true,
+      "unsorted": false,
+      "empty": false
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 10,
+    "paged": true,
+    "unpaged": false
+  },
+  "totalPages": 1,
+  "totalElements": 3,
+  "last": true,
+  "size": 10,
+  "number": 0,
+  "sort": {
+    "sorted": true,
+    "unsorted": false,
+    "empty": false
+  },
+  "numberOfElements": 3,
+  "first": true,
+  "empty": false
+}
 ```
 #### Sucesso - HTTP Status Code: 
 FOUND - 302
 
 #### Falha - exemplo body: 
-String - "No exam types found"
+String - "No user details found"
 
 #### Falha - HTTP Status Code:
 NOT_FOUND - 404
 
-### GET by id (/id/{id}) - Retorna tipo de exame por ID
+### GET by id (/id/{id}) - Retorna pacientes por ID
 #### Sucesso - exemplo body:
 ```javascript
- 
+ {
+  "userId": 2,
+  "name": "thomas",
+  "email": "teste@gmail.com",
+  "cpf": "388123",
+  "password": "123"
+}
 ```
 
 #### Sucesso - HTTP Status Code: 
 FOUND - 302
 
 #### Falha - exemplo body: 
-String - Exam type not found"
+String - "No user details found"
 
 #### Falha - HTTP Status Code: 
 NOT_FOUND - 404
 
-### POST (/) - Cria tipo de exame
+### POST (/) - Cria tipo paciente
 #### Sucesso - exemplo body:
 ```javascript
 {
-
+  "userId": 10,
+  "name": "Fulano",
+  "email": "teste@gmail.com",
+  "cpf": "123456789",
+  "password": "corinthians123"
 }
 ```
 
@@ -451,31 +510,35 @@ String - "Error " + exception message
 #### Falha - HTTP Status Code:  
 BAD_REQUEST - 400
 
-### PUT (/{id} - Atualiza uma droga
+### PUT (/{id} - Atualiza um paciente
 #### Sucesso - exemplo body:
 ```javascript
 {
-
+  "userId": 2,
+  "name": "thomasATUALIZADO",
+  "email": "teste@gmail.com",
+  "cpf": "388123",
+  "password": "123"
 }
 ```
 #### Sucesso - HTTP Status Code: 
 OK - 200
 
 #### Falha - exemplo body: 
-String - "No exam types found" ou "Error " + exception message
+String - "User not found" ou "Error " + exception message
 
 #### Falha - HTTP Status Code: 
 NOT FOUND - 404 ou BAD_REQUEST 
 
-### DELETE /{id} - Deleta um tipo de exame
+### DELETE /{id} - Deleta um paciente
 #### Sucesso - exemplo body: 
-String - "Deleted successfully: " + drug name
+String - "Deleted successfully: " + id usuario
 
 #### Sucesso - HTTP Status Code: 
 OK - 200
 
 #### Falha - exemplo body: 
-String - "Drug not found" ou "Error " + exception message 
+String - "User not found" ou "Error " + exception message 
 
 #### Falha - HTTP Status Code: 
 NOT_FOUND - 404 - NOT_FOUND
