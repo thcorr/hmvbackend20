@@ -34,7 +34,7 @@ public class PrescriptionController {
     }
 
     @GetMapping
-    public ResponseEntity<Object> getAllPrescriptionEntries(@PageableDefault(page = 0, size = 10, sort = "prescriptionEntryId", direction = Sort.Direction.ASC) Pageable pageable){
+    public ResponseEntity<Object> getAllPrescriptionEntries(@PageableDefault(page = 0, size = 10, sort = "prescriptionId", direction = Sort.Direction.ASC) Pageable pageable){
         Page<Prescription> prescriptionPage =  prescriptionService.findAllPrescriptions(pageable);
         if(prescriptionPage.isEmpty()){
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No prescriptions found.");
@@ -92,7 +92,7 @@ public class PrescriptionController {
                 Optional<Drug> drug = drugService.findDrugById(dto.getDrugId());
 
                 if(!userDetails.isPresent()){
-                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Prescription not found.");
+                    return ResponseEntity.status(HttpStatus.NOT_FOUND).body("User not found.");
                 }
 
                 if(!drug.isPresent()){
