@@ -426,10 +426,54 @@ ___
 ## Prescription Controller /api/v1/prescription
 ###Descricao: Endpoint para incluir, alterar, excluir, e consultar receitas medicas para pacientes. 
 ### GET (/) - Retorna todos as receitas
-#### Sucesso - exemplo body: 
+#### Sucesso - exemplo body (CORRIGIDO - March 8th, 2022): 
 
 ```javascript
-Com erro - verificando
+{
+  "content": [
+    {
+      "prescriptionId": 1,
+      "prescription": "50 gotas a cada 12h - 5 dias",
+      "prescriptionDate": "2022-03-09",
+      "patient": {
+        "userId": 1,
+        "name": "Thomas",
+        "email": "emailqualquer1@gmail.com",
+        "cpf": "1234578910",
+        "password": "admin"
+      },
+      "drug": {
+        "drugId": 1,
+        "drugName": "Novalgina"
+      }
+    }
+  ],
+  "pageable": {
+    "sort": {
+      "sorted": true,
+      "unsorted": false,
+      "empty": false
+    },
+    "offset": 0,
+    "pageNumber": 0,
+    "pageSize": 10,
+    "paged": true,
+    "unpaged": false
+  },
+  "totalPages": 1,
+  "totalElements": 1,
+  "last": true,
+  "size": 10,
+  "number": 0,
+  "sort": {
+    "sorted": true,
+    "unsorted": false,
+    "empty": false
+  },
+  "numberOfElements": 1,
+  "first": true,
+  "empty": false
+}
 ```
 #### Sucesso - HTTP Status Code: 
 FOUND - 302
@@ -524,8 +568,8 @@ BAD_REQUEST - 400 OU NOT_FOUND - 404
 #### Sucesso - HTTP Status Code: 
 OK - 200
 
-#### Falha - exemplo body: 
-String - "Prescription not found" (Esta retornando isso se a receita nao existe bem como se o usuario nao existe - preciso corrigir) ou "Drug not found" OU "Error " + exception message
+#### Falha - exemplo body (CORRIGIDO - March 8th, 2022): 
+String - "Drug not found" ou "User not found" OU "Prescription not found" OU "Error " + exception message
 
 #### Falha - HTTP Status Code: 
 NOT FOUND - 404 ou BAD_REQUEST 400
